@@ -52,6 +52,7 @@ export interface IMyOptions {
   stylesData?: IMyStyles;
   ariaLabelPrevMonth?: string;
   ariaLabelNextMonth?: string;
+  todayBtnTxt?:string;
 }
 
 export interface IAngularMyDpOptions extends IMyOptions { }
