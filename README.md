@@ -170,6 +170,8 @@ The [options](https://github.com/kekeh/angular-mydatepicker/wiki/options-attribu
 | __divHostElement__   | no default value | [IMyDivHostElement](https://github.com/kekeh/angular-mydatepicker/blob/master/projects/angular-mydatepicker/src/lib/interfaces/my-div-host-element.interface.ts) | Div as a host element. In case of non-editable date field enable this option and put a __angular-mydatepicker__ directive inside a __div__ element. Placeholder text is an additional property of this option. Functionality is limited if this option is enabled. |
 | __ariaLabelPrevMonth__   | Previous Month | string | Aria label text of previous month button. |
 | __ariaLabelNextMonth__   | Next Month | string | Aria label text of next month button. |
+| __showTodayButton__   | false | boolean | Show 'Today' button on calendar. |
+| __todayBtnTxt__   | Today | string | Today button text. Can be used if *showTodayBtn = true.
 
 ### locale attribute
 

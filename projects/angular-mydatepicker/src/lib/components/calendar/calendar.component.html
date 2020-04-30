@@ -9,7 +9,8 @@
     <lib-selection-bar [opts]="opts" [yearsDuration]="yearsDuration" [visibleMonth]="visibleMonth" [selectMonth]="selectMonth" [selectYear]="selectYear"
                     [prevViewDisabled]="prevViewDisabled" [nextViewDisabled]="nextViewDisabled"
                     (prevNavigateBtnClicked)="onPrevNavigateBtnClicked()" (nextNavigateBtnClicked)="onNextNavigateBtnClicked()"
-                    (monthViewBtnClicked)="onMonthViewBtnClicked()" (yearViewBtnClicked)="onYearViewBtnClicked()"></lib-selection-bar>
+                    (monthViewBtnClicked)="onMonthViewBtnClicked()" (yearViewBtnClicked)="onYearViewBtnClicked()"
+                    (todayBtnClicked)="onTodayBtnClicked()"></lib-selection-bar>
 
     <lib-day-view *ngIf="!selectMonth && !selectYear" [opts]="opts" [dates]="dates" [weekDays]="weekDays"
                     [selectedDate]="selectedDate" [selectedDateRange]="selectedDateRange"
@@ -23,6 +24,10 @@
     <lib-year-view *ngIf="selectYear" [opts]="opts" [years]="years"
                     (yearCellClicked)="onYearCellClicked($event)"
                     (yearCellKeyDown)="onYearCellKeyDown($event)"></lib-year-view>
+
+    <div class="myDpBtnsBar" *ngIf="opts.showTodayBtn">
+      <button class="myDpFooterBtn" (click)="onTodayBtnClicked()">{{ opts.todayBtnTxt }}</button>
+    </div>
 
   </div>
 </div>

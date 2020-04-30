@@ -765,4 +765,9 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
   swapHeaderBtnDisabled(): void {
     [this.prevViewDisabled, this.nextViewDisabled] = [this.nextViewDisabled, this.prevViewDisabled];
   }
+
+  onTodayBtnClicked() {
+    const date = this.utilService.getToday();
+    this.selectDate(date);
+  }
 }

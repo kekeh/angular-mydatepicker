@@ -271,6 +271,12 @@
   font-size: 14px;
 }
 
+.myDpCalTable.myDpBtnsEnabled,
+.myDpMonthTable.myDpBtnsEnabled,
+.myDpYearTable.myDpBtnsEnabled {
+  height: calc(100% - 60px);
+}
+
 .myDpCalTable,
 .myDpMonthTable,
 .myDpYearTable,
@@ -504,4 +510,33 @@
 
 .myDpIconRightArrow:before {
   content: "\e801";
+}
+
+.myDpBtnsBar {
+  display: flex;
+  justify-content: flex-end;
+  height: 30px;
+  background-color: #fff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.myDpFooterBtn {
+  background: transparent;
+  padding: 0;
+  border: none;
+  line-height: 30px;
+  height: 28px;
+  margin-top: 1px;
+  color: #000;
+  outline: none;
+  margin: 0 10px;
+}
+
+.myDpFooterBtn:hover {
+  color: #777;
+}
+
+.myDpFooterBtn:focus {
+  outline: none;
 }

@@ -50,7 +50,8 @@ export class DatePickerNgmodel implements OnInit {
       {
         selector: '',
         styles: ''
-      }
+      },
+    showTodayBtn: true,
   };
 
   @ViewChild('dp') ngxdp: AngularMyDatePickerDirective;

@@ -21,6 +21,7 @@ export class SelectionBarComponent implements OnChanges {
   @Output() nextNavigateBtnClicked: EventEmitter<void> = new EventEmitter<void>();
   @Output() monthViewBtnClicked: EventEmitter<void> = new EventEmitter<void>();
   @Output() yearViewBtnClicked: EventEmitter<void> = new EventEmitter<void>();
+  @Output() todayBtnClicked: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
@@ -66,5 +67,10 @@ export class SelectionBarComponent implements OnChanges {
   onYearViewBtnClicked(event: any): void {
     event.stopPropagation();
     this.yearViewBtnClicked.emit();
+  }
+
+  onTodayBtnClicked(event: any): void {
+    event.stopPropagation();
+    this.todayBtnClicked.emit();
   }
 }
