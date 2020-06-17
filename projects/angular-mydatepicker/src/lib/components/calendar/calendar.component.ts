@@ -170,6 +170,17 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  setCalendarView(view: DefaultView) {
+    if (view === DefaultView.Month) {
+      this.monthViewBtnClicked();
+    }
+    else if (view === DefaultView.Year) {
+      this.yearViewBtnClicked();
+    } else {
+      this.setCalendarVisibleMonth();
+    }
+  }
+
   setCalendarAnimation(calAnimation: IMyCalendarAnimation, isOpen: boolean): void {
     const {nativeElement} = this.selectorEl;
     const {renderer} = this;

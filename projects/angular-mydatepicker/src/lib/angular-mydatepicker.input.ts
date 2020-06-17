@@ -20,6 +20,7 @@ import {KeyCode} from "./enums/key-code.enum";
 import {CalAnimation} from "./enums/cal-animation.enum";
 import {KEYUP, BLUR, EMPTY_STR, DISABLED, CLICK, BODY, VALUE, PREVENT_CLOSE_TIMEOUT, OPTIONS, DEFAULT_MONTH, 
   LOCALE, OBJECT, PX, INNER_HTML, ANIMATION_END, ANIMATION_TIMEOUT} from "./constants/constants";
+import { DefaultView } from "./enums/default-view.enum";
 
 
 const NGX_DP_VALUE_ACCESSOR = {
@@ -590,5 +591,11 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
 
   private getSelectorDimension(value: string): number {
     return Number(value.replace(PX, EMPTY_STR));
+  }
+
+  public setCalendarView(view: DefaultView) {
+    if (this.cRef) {
+      this.cRef.instance.setCalendarView(view);
+    }
   }
 }
