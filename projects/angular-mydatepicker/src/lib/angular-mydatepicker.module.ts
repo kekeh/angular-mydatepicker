@@ -1,6 +1,7 @@
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {NgModule} from "@angular/core";
+import { A11yModule } from "@angular/cdk/a11y";
 
 import {CalendarComponent} from "./components/calendar/calendar.component";
 import {SelectionBarComponent} from "./components/selection-bar/selection-bar.component";
@@ -13,7 +14,7 @@ import {AngularMyDatePickerDirective} from "./angular-mydatepicker.input";
 import {AngularMyDatePickerCalendarDirective} from "./directives/angular-mydatepicker-calendar.directive";
 
 @NgModule({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, A11yModule],
   declarations: [
     CalendarComponent,
     SelectionBarComponent,
