@@ -18,9 +18,9 @@ Screenshots using [predefined styles](https://github.com/kekeh/angular-mydatepic
 
 ## Browser support (tested)
 
-| Chrome | Firefox | Edge | IE11 | Safari | iOS Safari |
-| :------------- | :------------- | :----| :---------- | :----| :---------- |
-| :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Chrome | Firefox | Edge | Safari | iOS Safari |
+| :------------- | :----| :---------- | :----| :---------- |
+| :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 
 ## Description
 
