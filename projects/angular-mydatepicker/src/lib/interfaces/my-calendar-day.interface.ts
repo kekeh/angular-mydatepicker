@@ -11,5 +11,5 @@ export interface IMyCalendarDay {
   highlight: boolean;
   range?: boolean;
   row?: number;
-  col?: number
+  col?: number;
 }

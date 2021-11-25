@@ -30,7 +30,7 @@ export class DatePickerInline implements OnInit {
 
   onDateRange(checked: boolean): void {
     this.model = null;
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.dateRange = checked;
     this.myDatePickerOptions = copy;
   }
@@ -40,53 +40,53 @@ export class DatePickerInline implements OnInit {
   }
 
   onDisableUntilYesterday(): void {
-    let copy = this.getCopyOfOptions();
-    let d: Date = new Date();
+    const copy = this.getCopyOfOptions();
+    const d: Date = new Date();
     d.setDate(d.getDate() - 1);
     copy.disableUntil = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
     this.myDatePickerOptions = copy;
   }
 
   onInitToPastMonth(): void {
-    let d: Date = new Date();
+    const d: Date = new Date();
     d.setMonth(d.getMonth() - 1);
     this.model = {
-      isRange: false, 
+      isRange: false,
       singleDate: {
         date: {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()}
-      }, 
+      },
       dateRange: null};
   }
 
   onTodayPlus3(): void {
-    let today: Date = new Date();
-    let date: Date = new Date();
+    const today: Date = new Date();
+    const date: Date = new Date();
     date.setDate(date.getDate() + 3);
 
     this.model = {isRange: true, singleDate: null, dateRange: {
       beginDate: {year: today.getFullYear(), month: today.getMonth() + 1, day: today.getDate()},
       endDate: {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()}
-    }}; 
+    }};
   }
 
   onYesterdayPlus3(): void {
-    let today: Date = new Date();
+    const today: Date = new Date();
     today.setDate(today.getDate() - 1);
 
-    let date: Date = new Date();
+    const date: Date = new Date();
     date.setDate(date.getDate() + 2);
-    
+
     this.model = {isRange: true, singleDate: null, dateRange: {
       beginDate: {year: today.getFullYear(), month: today.getMonth() + 1, day: today.getDate()},
       endDate: {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()}
-    }}; 
+    }};
   }
 
   // callbacks
   onDateChanged(event: IMyDateModel): void {
     console.log('onDateChanged(): ', event);
     if (!event.isRange) {
-      let {date, jsDate, formatted, epoc} = event.singleDate;
+      const {date, jsDate, formatted, epoc} = event.singleDate;
       if (formatted !== '') {
         this.selectedTextNormal = 'Formatted: ' + formatted + ' - epoc timestamp: ' + epoc;
         this.validDate = true;
@@ -97,7 +97,7 @@ export class DatePickerInline implements OnInit {
       }
     }
     else {
-      let {formatted} = event.dateRange;
+      const {formatted} = event.dateRange;
       if (formatted !== '') {
         this.selectedTextNormal = 'Formatted: ' + formatted;
         this.validDate = true;

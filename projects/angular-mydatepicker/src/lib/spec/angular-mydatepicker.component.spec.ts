@@ -33,7 +33,7 @@ function getTodayDate(): string {
   template: '<input style="width: 400px;" class="myDateInput" type="{{inputType}}" id="myDateInput" [options]="options" name="mydate" angular-mydatepicker #dp="angular-mydatepicker" />'
 })
 class AngularMyDatepickerTestComponent {
-  @ViewChild('dp') vcDp: AngularMyDatePickerDirective;
+  @ViewChild('dp', { static: true }) vcDp: AngularMyDatePickerDirective;
 
   inputType: string = 'text';
 
@@ -2323,7 +2323,7 @@ describe('AngularMyDatePickerComponent', () => {
 
     fixture.detectChanges();
     let input = getElement('.myDateInput');
-    
+
     expect(input.value).toBe(today);
 
 
@@ -2484,7 +2484,7 @@ describe('AngularMyDatePickerComponent', () => {
     let monthBtn  = getElement('.myDpMonthBtn');
     expect(monthBtn).not.toBe(null);
     expect(monthBtn.textContent.trim()).toBe('Mar');
-    
+
     fixture.detectChanges();
     let nextBtn = getElement('.myDpNextBtn .myDpHeaderBtn');
     expect(nextBtn).not.toBe(null);
@@ -2529,7 +2529,7 @@ describe('AngularMyDatePickerComponent', () => {
     let yearBtn  = getElement('.myDpYearBtn');
     expect(yearBtn).not.toBe(null);
     expect(yearBtn.textContent.trim()).toBe('2021');
-    
+
     fixture.detectChanges();
     nextBtn = getElement('.myDpNextBtn .myDpHeaderBtn');
     expect(nextBtn).not.toBe(null);
@@ -2564,7 +2564,7 @@ describe('AngularMyDatePickerComponent', () => {
     expect(td).not.toBe(null);
     expect(td.textContent.trim()).toBe('2028');
 
-    
+
 
     fixture.detectChanges();
     prevBtn = getElement('.myDpPrevBtn .myDpHeaderBtn');
@@ -2575,7 +2575,7 @@ describe('AngularMyDatePickerComponent', () => {
     yearBtn  = getElement('.myDpYearBtn');
     expect(yearBtn).not.toBe(null);
     expect(yearBtn.textContent.trim()).toBe('2057 - 2033');
-    
+
     fixture.detectChanges();
     nextBtn = getElement('.myDpNextBtn .myDpHeaderBtn');
     expect(nextBtn).not.toBe(null);
@@ -2623,7 +2623,7 @@ describe('AngularMyDatePickerComponent', () => {
         }
         .dp1 .myDpIconRightArrow {
           color: blue;
-        }  
+        }
       `
       };
 

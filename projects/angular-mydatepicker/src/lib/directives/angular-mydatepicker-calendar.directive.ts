@@ -11,7 +11,7 @@ export class AngularMyDatePickerCalendarDirective implements AfterViewInit {
   ngAfterViewInit(): void {
     const {inline, selectorHeight, selectorWidth, selectorPos} = this.libAngularMyDatePickerCalendar;
     const {style} = this.el.nativeElement;
-    
+
     style.height = selectorHeight;
     style.width = selectorWidth;
     style.top = !inline ? selectorPos.top : "0";

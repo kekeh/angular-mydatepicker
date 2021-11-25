@@ -1,4 +1,4 @@
-import {Directive, Input, ComponentRef, ElementRef, ViewContainerRef, Renderer2, ChangeDetectorRef, 
+import {Directive, Input, ComponentRef, ElementRef, ViewContainerRef, Renderer2, ChangeDetectorRef,
   ComponentFactoryResolver, forwardRef, EventEmitter, Output, SimpleChanges, OnChanges, HostListener, OnDestroy} from "@angular/core";
 import {AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator} from "@angular/forms";
 import {CalendarComponent} from "./components/calendar/calendar.component";
@@ -21,7 +21,7 @@ import {KeyCode} from "./enums/key-code.enum";
 import {CalAnimation} from "./enums/cal-animation.enum";
 import {HeaderAction} from "./enums/header-action.enum";
 import {ActiveView} from "./enums/active-view.enum";
-import {KEYUP, BLUR, EMPTY_STR, DISABLED, CLICK, BODY, VALUE, PREVENT_CLOSE_TIMEOUT, OPTIONS, DEFAULT_MONTH, 
+import {KEYUP, BLUR, EMPTY_STR, DISABLED, CLICK, BODY, VALUE, PREVENT_CLOSE_TIMEOUT, OPTIONS, DEFAULT_MONTH,
   LOCALE, OBJECT, PX, INNER_HTML, ANIMATION_END, ANIMATION_TIMEOUT} from "./constants/constants";
 
 const NGX_DP_VALUE_ACCESSOR = {
@@ -81,7 +81,7 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
     if (this.ignoreKeyPress(keyCode)) {
       return;
     }
-    
+
     if (keyCode === KeyCode.esc) {
       this.closeSelector(CalToggle.CloseByEsc);
     }
@@ -171,8 +171,8 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
   private onClickWrapper = (event: any) => this.onClick(event);
 
   private onClick(event: any) {
-    if (this.opts.closeSelectorOnDocumentClick && !this.preventClose && event.target && this.cRef 
-        && this.elem.nativeElement !== event.target && !this.cRef.location.nativeElement.contains(event.target) 
+    if (this.opts.closeSelectorOnDocumentClick && !this.preventClose && event.target && this.cRef
+        && this.elem.nativeElement !== event.target && !this.cRef.location.nativeElement.contains(event.target)
         && !this.disabled) {
       this.closeSelector(CalToggle.CloseByOutClick);
     }
@@ -193,7 +193,7 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
       else {
         dm = {defMonth: dm, overrideSelection: false};
       }
-      
+
       this.defaultMonth = dm;
     }
 
@@ -213,14 +213,14 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
   public setLocaleOptions(): void {
     const opts: IMyOptions = this.localeService.getLocaleOptions(this.locale);
     Object.keys(opts).forEach((k) => {
-      (<IMyOptions> this.opts)[k] = opts[k];
+      (this.opts as IMyOptions)[k] = opts[k];
     });
   }
 
   public parseOptions(opts: IMyOptions): void {
     if (opts) {
       Object.keys(opts).forEach((k) => {
-        (<IMyOptions> this.opts)[k] = opts[k];
+        (this.opts as IMyOptions)[k] = opts[k];
       });
     }
 
@@ -265,7 +265,7 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
       if (!date) {
         date = this.utilService.jsDateToMyDate(jsDate);
       }
-      
+
       const formatted: string = this.utilService.formatDate(date, dateFormat, monthLabels);
 
       validateOpts = {validateDisabledDates: false, selectedValue: this.utilService.getSelectedValue(this.selectedValue, false)};
@@ -480,7 +480,7 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
         return true;
       }
     }
-    
+
     this.emitInputFieldChanged(value, false);
     return false;
   }
@@ -515,7 +515,7 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
 
   private closeSelector(reason: number): void {
     const {inline, calendarAnimation} = this.opts;
-    
+
     if (this.cRef && !inline) {
       if (calendarAnimation.out !== CalAnimation.None) {
         const {instance} = this.cRef;
@@ -540,7 +540,7 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
       this.cRef = null;
     }
   }
-  
+
   private updateModel(model: IMyDateModel): void {
     this.setHostValue(this.utilService.getFormattedDate(model));
     this.onChangeCb(model);

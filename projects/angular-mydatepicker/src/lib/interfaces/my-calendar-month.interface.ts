@@ -6,5 +6,5 @@ export interface IMyCalendarMonth {
   selected: boolean;
   disabled: boolean;
   row?: number;
-  col?: number
+  col?: number;
 }

@@ -21,7 +21,7 @@ import {DefaultView} from "../../enums/default-view.enum";
 import {CalAnimation} from "../../enums/cal-animation.enum";
 import {HeaderAction} from "../../enums/header-action.enum";
 import {ActiveView} from "../../enums/active-view.enum";
-import {DOT, UNDER_LINE, D, M, Y, DATE_ROW_COUNT, DATE_COL_COUNT, MONTH_ROW_COUNT, MONTH_COL_COUNT, YEAR_ROW_COUNT, YEAR_COL_COUNT, 
+import {DOT, UNDER_LINE, D, M, Y, DATE_ROW_COUNT, DATE_COL_COUNT, MONTH_ROW_COUNT, MONTH_COL_COUNT, YEAR_ROW_COUNT, YEAR_COL_COUNT,
   SU, MO, TU, WE, TH, FR, SA, EMPTY_STR, CLICK, STYLE, MY_DP_ANIMATION, ANIMATION_NAMES, IN, OUT, TABINDEX, TD_SELECTOR, ZERO_STR, YEAR_SEPARATOR} from "../../constants/constants";
 
 @Component({
@@ -32,9 +32,9 @@ import {DOT, UNDER_LINE, D, M, Y, DATE_ROW_COUNT, DATE_COL_COUNT, MONTH_ROW_COUN
   encapsulation: ViewEncapsulation.None
 })
 export class CalendarComponent implements AfterViewInit, OnDestroy {
-  @ViewChild("selectorEl") selectorEl: ElementRef;
-  @ViewChild("styleEl") styleEl: ElementRef;
-  
+  @ViewChild("selectorEl", { static: true }) selectorEl: ElementRef;
+  @ViewChild("styleEl", { static: true }) styleEl: ElementRef;
+
   @HostBinding("style.position") position = "static";
 
   opts: IMyOptions;
@@ -60,7 +60,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
   rangeDateSelection: (rds: IMyRangeDateSelection) => void;
   viewActivated: (va: ActiveView) => void;
   closedByEsc: () => void;
-  
+
   selectorPos: IMySelectorPosition = null;
 
   prevViewDisabled: boolean = false;
@@ -101,7 +101,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
   initializeComponent(opts: IMyOptions, defaultMonth: IMyDefaultMonth, selectedValue: any, inputValue: string, selectorPos: IMySelectorPosition, dc: (dm: IMyDateModel, close: boolean) => void, cvc: (cvc: IMyCalendarViewChanged) => void, rds: (rds: IMyRangeDateSelection) => void, va: (va: ActiveView) => void, cbe: () => void): void {
     this.opts = opts;
     this.selectorPos = selectorPos;
-    
+
     this.dateChanged = dc;
     this.calendarViewChanged = cvc;
     this.rangeDateSelection = rds;
@@ -114,7 +114,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
     this.dayIdx = this.weekDayOpts.indexOf(firstDayOfWeek);
     if (this.dayIdx !== -1) {
       let idx: number = this.dayIdx;
-      for (let i = 0; i < this.weekDayOpts.length; i++) {
+      for (const item of this.weekDayOpts) {
         this.weekDays.push(dayLabels[this.weekDayOpts[idx]]);
         idx = this.weekDayOpts[idx] === SA ? 0 : idx + 1;
       }
@@ -236,8 +236,8 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
 
   clearDate(): void {
     const {month, year} = this.utilService.getToday();
-    this.selectedMonth = {monthNbr: month, year: year};
-    
+    this.selectedMonth = {monthNbr: month, year};
+
     this.resetDateValue();
     this.setCalendarVisibleMonth();
     this.resetMonthYearSelect();
@@ -256,7 +256,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
   monthViewBtnClicked(): void {
     this.selectMonth = !this.selectMonth;
     this.selectYear = false;
-    
+
     this.cdr.detectChanges();
     if (this.selectMonth) {
       this.generateMonths();
@@ -349,9 +349,9 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
         rowData.push({
           nbr: j,
           year,
-          name: monthLabels[j], 
-          currMonth: j === today.month && year === today.year, 
-          selected: j === monthNbr && year === this.selectedMonth.year, 
+          name: monthLabels[j],
+          currMonth: j === today.month && year === today.year,
+          selected: j === monthNbr && year === this.selectedMonth.year,
           disabled,
           row,
           col: rtl ? col-- : col++
@@ -389,9 +389,9 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
       for (let j = i; j < i + 5; j++) {
         const disabled: boolean = this.utilService.isDisabledYear(j, this.opts);
         rowData.push({
-          year: j, 
-          currYear: j === today.year, 
-          selected: j === year, 
+          year: j,
+          currYear: j === today.year,
+          selected: j === year,
           disabled,
           row,
           col: rtl ? col-- : col++
@@ -462,7 +462,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
   }
 
   setDateViewMonth(isNext: boolean): void {
-    let change: number = isNext ? 1 : -1;
+    const change: number = isNext ? 1 : -1;
 
     const {year, monthNbr} = this.visibleMonth;
 
@@ -543,7 +543,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
 
     if (elem.getAttribute(TABINDEX) !== ZERO_STR) {
       // if the selected element is disabled move a focus to next/previous enabled element
-      let tdList: any = this.getCalendarElements();
+      const tdList: any = this.getCalendarElements();
       const idx: number = row * (colCount + 1) + col;
 
       let enabledElem: any = null;
@@ -586,7 +586,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
           isBegin: true,
           date,
           jsDate: this.utilService.myDateToJsDate(date),
-          dateFormat: dateFormat,
+          dateFormat,
           formatted: this.utilService.formatDate(date, dateFormat, monthLabels),
           epoc: this.utilService.getEpocTime(date)
         });
@@ -598,7 +598,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
           isBegin: true,
           date,
           jsDate: this.utilService.myDateToJsDate(date),
-          dateFormat: dateFormat,
+          dateFormat,
           formatted: this.utilService.formatDate(date, dateFormat, monthLabels),
           epoc: this.utilService.getEpocTime(date)
         });
@@ -613,7 +613,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
             isBegin: true,
             date,
             jsDate: this.utilService.myDateToJsDate(date),
-            dateFormat: dateFormat,
+            dateFormat,
             formatted: this.utilService.formatDate(date, dateFormat, monthLabels),
             epoc: this.utilService.getEpocTime(date)
           });
@@ -624,7 +624,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
             isBegin: false,
             date,
             jsDate: this.utilService.myDateToJsDate(date),
-            dateFormat: dateFormat,
+            dateFormat,
             formatted: this.utilService.formatDate(date, dateFormat, monthLabels),
             epoc: this.utilService.getEpocTime(date)
           });
@@ -701,7 +701,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
             highlight: this.utilService.isHighlightedDate(date, this.opts),
             row: i - 1,
             col: rtl ? col-- : col++
-          }); 
+          });
         }
 
         cmo = MonthId.curr;
@@ -766,8 +766,8 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
     if (disableHeaderButtons) {
       const duDate: IMyDate = {year: m === 1 ? y - 1 : y, month: m === 1 ? 12 : m - 1, day: this.utilService.datesInMonth(m === 1 ? 12 : m - 1, m === 1 ? y - 1 : y)};
       const dsDate: IMyDate = {year: m === 12 ? y + 1 : y, month: m === 12 ? 1 : m + 1, day: 1};
-      
-      dpm = this.utilService.isDisabledByDisableUntil(duDate, disableUntil) 
+
+      dpm = this.utilService.isDisabledByDisableUntil(duDate, disableUntil)
         && !this.utilService.isPastDatesEnabled(duDate, enableDates);
       dnm = this.utilService.isDisabledByDisableSince(dsDate, disableSince)
         && !this.utilService.isFutureDatesEnabled(dsDate, enableDates);

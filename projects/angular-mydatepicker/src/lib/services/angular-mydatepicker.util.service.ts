@@ -37,9 +37,9 @@ export class UtilService {
     let month: number = 0;
     let day: number = 0;
 
-    for(let dv of dateValues) {
-      if (dv.format.indexOf(ORDINAL) != -1) {
-        const dayNumber: number = parseInt(dv.value.replace(/\D/g, ''));
+    for (const dv of dateValues) {
+      if (dv.format.includes(ORDINAL)) {
+        const dayNumber: number = parseInt(dv.value.replace(/\D/g, ''), 10);
         const ordinalStr: string = dv.value.replace(/[0-9]/g, '');
         const ordinal: string = this.getOrdinal(dayNumber);
 
@@ -56,7 +56,7 @@ export class UtilService {
       if (value && /^\d+$/.test(value) && Number(value) === 0) {
         return returnDate;
       }
-      
+
       if (format.indexOf(YYYY) !== -1) {
         year = this.getNumberByValue(dv);
       }
@@ -118,19 +118,19 @@ export class UtilService {
       const dates: Array<string> = dateRangeStr.split(options.dateRangeDatesDelimiter);
       if (dates && dates.length === 2) {
         const [beginDate, endDate] = dates;
-        let {selectedValue} = validateOpts;
+        const {selectedValue} = validateOpts;
 
         if (selectedValue) {
           validateOpts.selectedValue = selectedValue.begin;
         }
-        
+
         const begin: IMyDate = this.isDateValid(beginDate, options, validateOpts);
 
         if (this.isInitializedDate(begin)) {
           if (selectedValue) {
             validateOpts.selectedValue = selectedValue.end;
           }
-          
+
           const end: IMyDate = this.isDateValid(endDate, options, validateOpts);
 
           if (this.isInitializedDate(end) && this.isDateSameOrEarlier(begin, end)) {
@@ -144,9 +144,9 @@ export class UtilService {
 
   getDateValue(dateStr: string, dateFormat: string, delimeters: Array<string>): Array<IMyDateFormat> {
     let del: string = EMPTY_STR;
-    
+
     if (delimeters) {
-      for(const d of delimeters) {
+      for (const d of delimeters) {
         if (del.indexOf(d) === -1) {
           del += d;
         }
@@ -344,7 +344,7 @@ export class UtilService {
   }
 
   isPastDatesEnabled(date: IMyDate, enableDates: Array<IMyDate>): boolean {
-    for(const d of enableDates) {
+    for (const d of enableDates) {
       if (this.getTimeInMilliseconds(d) <= this.getTimeInMilliseconds(date)) {
         return true;
       }
@@ -353,7 +353,7 @@ export class UtilService {
   }
 
   isFutureDatesEnabled(date: IMyDate, enableDates: Array<IMyDate>): boolean {
-    for(const d of enableDates) {
+    for (const d of enableDates) {
       if (this.getTimeInMilliseconds(d) >= this.getTimeInMilliseconds(date)) {
         return true;
       }
@@ -362,8 +362,8 @@ export class UtilService {
   }
 
   isDatesEnabled(dateBegin: IMyDate, dateEnd: IMyDate, enableDates: Array<IMyDate>): boolean {
-    for(const d of enableDates) {
-      if (this.getTimeInMilliseconds(d) >= this.getTimeInMilliseconds(dateBegin) 
+    for (const d of enableDates) {
+      if (this.getTimeInMilliseconds(d) >= this.getTimeInMilliseconds(dateBegin)
         && this.getTimeInMilliseconds(d) <= this.getTimeInMilliseconds(dateEnd)) {
           return true;
         }
@@ -376,7 +376,7 @@ export class UtilService {
     const dateMsEnd: number = this.getTimeInMilliseconds(dateEnd);
 
     for (const d of disableDateRanges) {
-      if (this.isInitializedDate(d.begin) && this.isInitializedDate(d.end) 
+      if (this.isInitializedDate(d.begin) && this.isInitializedDate(d.end)
         && dateMsBegin >= this.getTimeInMilliseconds(d.begin) && dateMsEnd <= this.getTimeInMilliseconds(d.end)) {
         return true;
       }
@@ -610,7 +610,7 @@ export class UtilService {
   }
 
   getKeyCodeFromEvent(event: any): number {
-    let key: any = event.key || event.keyCode || event.which;
+    const key: any = event.key || event.keyCode || event.which;
 
     if (this.checkKeyName(key, KeyName.enter) || key === KeyCode.enter) {
       return KeyCode.enter;
@@ -630,7 +630,7 @@ export class UtilService {
     else if (this.checkKeyName(key, KeyName.rightArrow) || key === KeyCode.rightArrow) {
       return KeyCode.rightArrow;
     }
-    else if (this.checkKeyName(key, KeyName.downArrow)|| key === KeyCode.downArrow) {
+    else if (this.checkKeyName(key, KeyName.downArrow) || key === KeyCode.downArrow) {
       return KeyCode.downArrow;
     }
     else if (this.checkKeyName(key, KeyName.tab) || key === KeyCode.tab) {

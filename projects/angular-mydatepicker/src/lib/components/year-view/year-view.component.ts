@@ -55,7 +55,7 @@ export class YearViewComponent implements OnChanges, AfterViewInit {
         this.onYearCellClicked(event, cell);
       }
       else if (this.opts.moveFocusByArrowKeys) {
-        this.yearCellKeyDown.emit(event)
+        this.yearCellKeyDown.emit(event);
       }
     }
   }
