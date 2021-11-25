@@ -55,7 +55,7 @@ export class MonthViewComponent implements OnChanges, AfterViewInit {
         this.onMonthCellClicked(event, cell);
       }
       else if (this.opts.moveFocusByArrowKeys) {
-        this.monthCellKeyDown.emit(event)
+        this.monthCellKeyDown.emit(event);
       }
     }
   }

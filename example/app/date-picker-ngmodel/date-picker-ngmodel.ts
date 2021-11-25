@@ -34,7 +34,7 @@ export class DatePickerNgmodel implements OnInit {
     disableSince: {year: 0, month: 0, day: 0},
     disableWeekdays: [],
     markDates: [],
-    markWeekends: <IMyMarkedDate>{},
+    markWeekends: {} as IMyMarkedDate,
     selectorHeight: '266px',
     selectorWidth: '266px',
     closeSelectorOnDateSelect: true,
@@ -54,7 +54,7 @@ export class DatePickerNgmodel implements OnInit {
       }
   };
 
-  @ViewChild('dp') ngxdp: AngularMyDatePickerDirective;
+  @ViewChild('dp', { static: true }) ngxdp: AngularMyDatePickerDirective;
 
   public selectedTextNormal: string = '';
 
@@ -68,7 +68,7 @@ export class DatePickerNgmodel implements OnInit {
     defMonth: '',
     overrideSelection: false
   };
-  
+
   public selectorSizes: Array<string> = new Array('266px x 266px', '200px x 220px', '260px x 290px');
   public defaultViews: Array<string> = new Array('date', 'month', 'year');
   public calAnimations: Array<string> = new Array('None', 'Fade', 'ScaleTop-ScaleCenter', 'ScaleCenter-ScaleTop', 'Rotate', 'FlipDiagonal');
@@ -148,53 +148,53 @@ export class DatePickerNgmodel implements OnInit {
       return;
     }
 
-    let begin: Date = new Date();
-    let end: Date = new Date();
+    const begin: Date = new Date();
+    const end: Date = new Date();
     end.setDate(end.getDate() + 2);
 
     this.model = {isRange: true, dateRange: {beginJsDate: begin, endJsDate: end}};
   }
 
   onOpenSelectorTopOfInput(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.openSelectorTopOfInput = checked;
     this.myDatePickerOptions = copy;
   }
 
   onAlignSelectorRight(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.alignSelectorRight = checked;
     this.myDatePickerOptions = copy;
   }
 
   onShowSelectorArrow(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.showSelectorArrow = checked;
     this.myDatePickerOptions = copy;
   }
 
   onMonthSelector(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.monthSelector = checked;
     this.myDatePickerOptions = copy;
   }
 
   onYearSelector(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.yearSelector = checked;
     this.myDatePickerOptions = copy;
   }
 
   onDisableToday(checked: boolean): void {
-    let d: Date = new Date();
-    let copy = this.getCopyOfOptions();
+    const d: Date = new Date();
+    const copy = this.getCopyOfOptions();
     copy.disableDates = checked ? [{year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()}] : [];
     this.myDatePickerOptions = copy;
   }
 
   onMarkToday(checked: boolean): void {
-    let d: Date = new Date();
-    let copy = this.getCopyOfOptions();
+    const d: Date = new Date();
+    const copy = this.getCopyOfOptions();
     copy.markDates = checked ? [{
       dates: [{year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()}],
       color: '#C30000'
@@ -203,27 +203,27 @@ export class DatePickerNgmodel implements OnInit {
   }
 
   onMarkWeekends(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.markWeekends = checked ? {marked: true, color: 'blue'} : {marked: false, color: ''};
     this.myDatePickerOptions = copy;
   }
 
   onHighlighSaturday(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.satHighlight = checked;
     this.myDatePickerOptions = copy;
   }
 
   onHighlighSunday(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.sunHighlight = checked;
     this.myDatePickerOptions = copy;
   }
 
   onHighlightDates(checked: boolean): void {
-    let d: Date = new Date();
-    let copy = this.getCopyOfOptions();
-    let dates: Array<IMyDate> = [];
+    const d: Date = new Date();
+    const copy = this.getCopyOfOptions();
+    const dates: Array<IMyDate> = [];
     dates.push({year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()});
 
     d.setDate(d.getDate() + 1);
@@ -236,140 +236,140 @@ export class DatePickerNgmodel implements OnInit {
   }
 
   onDisableWeekends(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.disableWeekends = checked;
     this.myDatePickerOptions = copy;
   }
 
   onDisableHeaderButtons(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.disableHeaderButtons = checked;
     this.myDatePickerOptions = copy;
   }
 
   onShowWeekNumbers(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.showWeekNumbers = checked;
     this.myDatePickerOptions = copy;
   }
 
   onCloseSelectorOnDateSelect(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.closeSelectorOnDateSelect = checked;
     this.myDatePickerOptions = copy;
   }
 
   onCloseSelectorOnDocumentClick(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.closeSelectorOnDocumentClick = checked;
     this.myDatePickerOptions = copy;
   }
 
   onDateRange(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.dateRange = checked;
     this.myDatePickerOptions = copy;
   }
 
   onAppendSelectorToBody(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.appendSelectorToBody = checked;
     this.myDatePickerOptions = copy;
   }
 
   onDisableWednesday(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.disableWeekdays = checked ? ['we'] : [];
     this.myDatePickerOptions = copy;
   }
 
   onDisable24Day(checked: boolean): void {
-    let d: Date = new Date();
-    let copy = this.getCopyOfOptions();
+    const d: Date = new Date();
+    const copy = this.getCopyOfOptions();
     copy.disableDates = checked ? [{year: 0, month: 0, day: 24}] : [];
     this.myDatePickerOptions = copy;
   }
 
   onFocusInputOnDateSelect(checked: boolean): void {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.focusInputOnDateSelect = checked;
     this.myDatePickerOptions = copy;
   }
 
   onDisableUntilYesterday(checked: boolean) {
-    let copy = this.getCopyOfOptions();
-    let d: Date = new Date();
+    const copy = this.getCopyOfOptions();
+    const d: Date = new Date();
     d.setDate(d.getDate() - 1);
     copy.disableUntil = checked ? {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()} : {year: 0, month: 0, day: 0};
     this.myDatePickerOptions = copy;
   }
 
   onDisableSinceTomorrow(checked: boolean) {
-    let copy = this.getCopyOfOptions();
-    let d: Date = new Date();
+    const copy = this.getCopyOfOptions();
+    const d: Date = new Date();
     d.setDate(d.getDate() + 1);
     copy.disableSince = checked ? {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()} : {year: 0, month: 0, day: 0};
     this.myDatePickerOptions = copy;
   }
 
   onShowMonthNumber(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.showMonthNumber = checked;
     this.myDatePickerOptions = copy;
   }
 
   onShowFooterBar(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.showFooterToday = checked;
     this.myDatePickerOptions = copy;
   }
 
   onDisableOwnStyle(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
 
-    let d: Date = new Date();
+    const d: Date = new Date();
     d.setDate(d.getDate() - 1);
-    let yesterday: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
+    const yesterday: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
 
     d.setDate(d.getDate() + 1);
-    let today: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
-    
+    const today: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
+
     d.setDate(d.getDate() + 1);
-    let tomorrow: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
+    const tomorrow: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
 
     copy.disableDates = checked ? [{dates: [yesterday, today, tomorrow], styleClass: 'disabledDates'}] : [];
-    copy.stylesData = 
+    copy.stylesData =
     {
       selector: 'dp1',
       styles: this.disableAndMarkOwnStyles()
-    }
+    };
 
     this.myDatePickerOptions = copy;
   }
 
   onMarkOwnStyle(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
 
-    let d: Date = new Date();
+    const d: Date = new Date();
     d.setDate(d.getDate() + 2);
-    let yesterday: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
+    const yesterday: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
 
     d.setDate(d.getDate() + 1);
-    let today: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
-    
+    const today: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
+
     d.setDate(d.getDate() + 1);
-    let tomorrow: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
+    const tomorrow: IMyDate = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
 
     copy.markDates = checked ? [
-      {dates: [yesterday], styleClass: 'pilatesDates'}, 
+      {dates: [yesterday], styleClass: 'pilatesDates'},
       {dates: [today], styleClass: 'boxingDates'},
       {dates: [tomorrow], color: 'red', styleClass: 'pilatesDatesAndBoxingDates'}
     ] : [];
-    copy.stylesData = 
+    copy.stylesData =
     {
       selector: 'dp1',
       styles: this.disableAndMarkOwnStyles()
-    }
+    };
     this.myDatePickerOptions = copy;
   }
 
@@ -391,7 +391,7 @@ export class DatePickerNgmodel implements OnInit {
   }
 
   onRtl(checked: boolean) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.rtl = checked;
     this.myDatePickerOptions = copy;
   }
@@ -401,7 +401,7 @@ export class DatePickerNgmodel implements OnInit {
   }
 
   onSelectorSize(size: string) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
 
     if (size === '266px x 266px') {
       copy.selectorHeight = '266px';
@@ -421,7 +421,7 @@ export class DatePickerNgmodel implements OnInit {
 
 
   onCalendarAnimation(animation: string) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
 
     if (animation === 'None') {
       copy.calendarAnimation = {in: CalAnimation.None, out: CalAnimation.None};
@@ -446,11 +446,11 @@ export class DatePickerNgmodel implements OnInit {
   }
 
   onOverrideCalColor(color: string) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
     copy.stylesData.selector = 'dp1';
     copy.selectorHeight = '266px';
     copy.selectorWidth = '266px';
- 
+
     if (color === 'Default') {
       copy.stylesData.styles = '';
     }
@@ -501,8 +501,8 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpFooterBtn:hover {
           color: #212529;
       }
-      .dp1 .myDpMarkCurrDay, 
-      .dp1 .myDpMarkCurrMonth, 
+      .dp1 .myDpMarkCurrDay,
+      .dp1 .myDpMarkCurrMonth,
       .dp1 .myDpMarkCurrYear {
           border-bottom: 2px solid #6c757d;
       }
@@ -512,8 +512,8 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpHighlight {
           color: #cd5c5c;
       }
-      .dp1 .myDpTableSingleDay:hover, 
-      .dp1 .myDpTableSingleMonth:hover, 
+      .dp1 .myDpTableSingleDay:hover,
+      .dp1 .myDpTableSingleMonth:hover,
       .dp1 .myDpTableSingleYear:hover {
           background-color: #ccc;
           color: #222;
@@ -527,7 +527,7 @@ export class DatePickerNgmodel implements OnInit {
         background-color: #ccc;
         color: #222;
       }
-    `
+    `;
     }
     else if (color === 'Blue') {
       copy.stylesData.styles = `
@@ -576,8 +576,8 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpFooterBtn:hover {
           color: #add8e6;
       }
-      .dp1 .myDpMarkCurrDay, 
-      .dp1 .myDpMarkCurrMonth, 
+      .dp1 .myDpMarkCurrDay,
+      .dp1 .myDpMarkCurrMonth,
       .dp1 .myDpMarkCurrYear {
           border-bottom: 2px solid #3855c1;
       }
@@ -587,8 +587,8 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpHighlight {
           color: #cd5c5c;
       }
-      .dp1 .myDpTableSingleDay:hover, 
-      .dp1 .myDpTableSingleMonth:hover, 
+      .dp1 .myDpTableSingleDay:hover,
+      .dp1 .myDpTableSingleMonth:hover,
       .dp1 .myDpTableSingleYear:hover {
           background-color: #add8e6;
           color: #3855c1;
@@ -601,7 +601,7 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpSelectedYear {
         background-color: #8EBFFF;
       }
-    `
+    `;
     }
     else if (color === 'Green') {
       copy.stylesData.styles = `
@@ -650,8 +650,8 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpFooterBtn:hover {
           color: #90EE90;
       }
-      .dp1 .myDpMarkCurrDay, 
-      .dp1 .myDpMarkCurrMonth, 
+      .dp1 .myDpMarkCurrDay,
+      .dp1 .myDpMarkCurrMonth,
       .dp1 .myDpMarkCurrYear {
           border-bottom: 2px solid #228B22;
       }
@@ -661,8 +661,8 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpHighlight {
           color: #cd5c5c;
       }
-      .dp1 .myDpTableSingleDay:hover, 
-      .dp1 .myDpTableSingleMonth:hover, 
+      .dp1 .myDpTableSingleDay:hover,
+      .dp1 .myDpTableSingleMonth:hover,
       .dp1 .myDpTableSingleYear:hover {
           background-color: #90EE90;
           color: #228B22;
@@ -675,7 +675,7 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpSelectedYear {
         background-color: #00FA9A;
       }
-    `
+    `;
     }
     else if (color === 'Red') {
       copy.stylesData.styles = `
@@ -724,8 +724,8 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpFooterBtn:hover {
           color: #F08080;
       }
-      .dp1 .myDpMarkCurrDay, 
-      .dp1 .myDpMarkCurrMonth, 
+      .dp1 .myDpMarkCurrDay,
+      .dp1 .myDpMarkCurrMonth,
       .dp1 .myDpMarkCurrYear {
           border-bottom: 2px solid #800000;
       }
@@ -735,8 +735,8 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpHighlight {
           color: #FF0000;
       }
-      .dp1 .myDpTableSingleDay:hover, 
-      .dp1 .myDpTableSingleMonth:hover, 
+      .dp1 .myDpTableSingleDay:hover,
+      .dp1 .myDpTableSingleMonth:hover,
       .dp1 .myDpTableSingleYear:hover {
           background-color: #F6B2B2;
           color: #800000;
@@ -750,7 +750,7 @@ export class DatePickerNgmodel implements OnInit {
         background-color: #E6ADAD;
         color: #800000;
       }
-    `
+    `;
     }
     else if (color === 'Yellow') {
       copy.stylesData.styles = `
@@ -799,16 +799,16 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpFooterBtn:hover {
           color: #F0E68C;
       }
-      .dp1 .myDpMarkCurrDay, 
-      .dp1 .myDpMarkCurrMonth, 
+      .dp1 .myDpMarkCurrDay,
+      .dp1 .myDpMarkCurrMonth,
       .dp1 .myDpMarkCurrYear {
           border-bottom: 2px solid #DAA520;
       }
       .dp1 .myDpDisabled {
           color: #999;
       }
-      .dp1 .myDpTableSingleDay:hover, 
-      .dp1 .myDpTableSingleMonth:hover, 
+      .dp1 .myDpTableSingleDay:hover,
+      .dp1 .myDpTableSingleMonth:hover,
       .dp1 .myDpTableSingleYear:hover {
           background-color: #F0E68C;
           color: #DAA520;
@@ -822,7 +822,7 @@ export class DatePickerNgmodel implements OnInit {
         background-color: #F0E68C;
         color: #B8860B;
       }
-    `
+    `;
     }
     else if (color === 'Dark') {
       copy.stylesData.styles = `
@@ -876,8 +876,8 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpFooterBtn:hover {
           color: #ddd;
       }
-      .dp1 .myDpMarkCurrDay, 
-      .dp1 .myDpMarkCurrMonth, 
+      .dp1 .myDpMarkCurrDay,
+      .dp1 .myDpMarkCurrMonth,
       .dp1 .myDpMarkCurrYear {
           border-bottom: 2px solid #fff;
       }
@@ -888,8 +888,8 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpHighlight {
         color: 	#960018;
       }
-      .dp1 .myDpTableSingleDay:hover, 
-      .dp1 .myDpTableSingleMonth:hover, 
+      .dp1 .myDpTableSingleDay:hover,
+      .dp1 .myDpTableSingleMonth:hover,
       .dp1 .myDpTableSingleYear:hover {
           background-color: #ddd;
           color: #000;
@@ -917,7 +917,7 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpFooterBar {
         background-color: #6c757d;
       }
-    `
+    `;
     }
     else if (color === 'Bold') {
       copy.stylesData.styles = `
@@ -977,13 +977,13 @@ export class DatePickerNgmodel implements OnInit {
       .dp1 .myDpFooterBtn:hover {
           color: #F0E68C;
       }
-      .dp1 .myDpTableSingleDay:hover, 
-      .dp1 .myDpTableSingleMonth:hover, 
+      .dp1 .myDpTableSingleDay:hover,
+      .dp1 .myDpTableSingleMonth:hover,
       .dp1 .myDpTableSingleYear:hover {
           background-color: #F0E68C;
           color: #113B08;
       }
-      `
+      `;
       copy.selectorHeight = '300px';
       copy.selectorWidth = '300px';
     }
@@ -992,7 +992,7 @@ export class DatePickerNgmodel implements OnInit {
   }
 
   onDefaultView(size: string) {
-    let copy = this.getCopyOfOptions();
+    const copy = this.getCopyOfOptions();
 
     if (size === 'date') {
       copy.defaultView = DefaultView.Date;
@@ -1024,7 +1024,7 @@ export class DatePickerNgmodel implements OnInit {
     console.log('onDateChanged(): ', event);
 
     if (!event.isRange) {
-      let {date, jsDate, formatted, epoc} = event.singleDate;
+      const {date, jsDate, formatted, epoc} = event.singleDate;
       if (formatted !== '') {
         this.selectedTextNormal = 'Formatted: ' + formatted + ' - epoc timestamp: ' + epoc;
         this.validDate = true;
@@ -1035,7 +1035,7 @@ export class DatePickerNgmodel implements OnInit {
       }
     }
     else {
-      let {formatted} = event.dateRange;
+      const {formatted} = event.dateRange;
       if (formatted !== '') {
         this.selectedTextNormal = 'Formatted: ' + formatted;
         this.validDate = true;
@@ -1071,8 +1071,8 @@ export class DatePickerNgmodel implements OnInit {
     if(isBegin) {
         // start date selection - set disable since (selected date + 7 days)
         this.ngxdp.writeValue({
-          isRange: true, 
-          singleDate: null, 
+          isRange: true,
+          singleDate: null,
           dateRange: {
             beginDate: {year: 0, month: 0, day: 0},
             endDate: {year: 0, month: 0, day: 0}
@@ -1083,7 +1083,7 @@ export class DatePickerNgmodel implements OnInit {
 
         let d = new Date(jsDate.getTime());
         d.setDate(d.getDate() + 7);
-        
+
         options.disableSince = {year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate()};
         this.myDatePickerOptions = options;
 

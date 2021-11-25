@@ -75,7 +75,7 @@ export class DayViewComponent implements OnChanges, AfterViewInit {
         this.onDayCellClicked(event, cell);
       }
       else if (this.opts.moveFocusByArrowKeys) {
-        this.dayCellKeyDown.emit(event)
+        this.dayCellKeyDown.emit(event);
       }
     }
   }

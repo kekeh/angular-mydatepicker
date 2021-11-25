@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation, SimpleChanges} from "@angular/core";
 import {IMyMonth} from "../../interfaces/my-month.interface";
 import {IMyOptions} from "../../interfaces/my-options.interface";
-import {OPTS, YEARS_DURATION, VISIBLE_MONTH, SELECT_MONTH, SELECT_YEAR, PREV_VIEW_DISABLED, NEXT_VIEW_DISABLED} from "../../constants/constants"
+import {OPTS, YEARS_DURATION, VISIBLE_MONTH, SELECT_MONTH, SELECT_YEAR, PREV_VIEW_DISABLED, NEXT_VIEW_DISABLED} from "../../constants/constants";
 
 @Component({
   selector: "lib-selection-bar",

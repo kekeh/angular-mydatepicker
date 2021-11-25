@@ -4,10 +4,10 @@ node_js:
 addons:
   chrome: stable
 before_script:
-  - npm install -g @angular/cli@7.3.9
+  - npm install -g @angular/cli@13.0.3
   - npm install
 script:
   - npm run test-lib
 after_success:
-  - ./node_modules/.bin/codecov -f test-output/angular-mydatepicker/coverage-final.json
+  - ./node_modules/.bin/codecov -f test-output/angular-mydatepicker/coverage-final.lcov
 sudo: required

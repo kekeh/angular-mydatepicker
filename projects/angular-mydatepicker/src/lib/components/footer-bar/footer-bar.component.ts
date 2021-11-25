@@ -24,12 +24,12 @@ export class FooterBarComponent implements OnChanges {
       const {dateFormat, monthLabels, todayTxt} = this.opts;
 
       const today = this.utilService.getToday();
-      this.footerBarTxt = todayTxt + (todayTxt.length > 0 ? SPACE_STR : EMPTY_STR) + 
+      this.footerBarTxt = todayTxt + (todayTxt.length > 0 ? SPACE_STR : EMPTY_STR) +
         this.utilService.formatDate(today, dateFormat, monthLabels);
     }
   }
 
   onFooterBarTxtClicked(): void {
-    this.footerBarTxtClicked.emit()
+    this.footerBarTxtClicked.emit();
   }
 }

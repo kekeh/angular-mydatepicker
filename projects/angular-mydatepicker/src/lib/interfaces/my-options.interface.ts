@@ -64,4 +64,4 @@ export interface IMyOptions {
   ariaLabelNextMonth?: string;
 }
 
-export interface IAngularMyDpOptions extends IMyOptions { }
+export type IAngularMyDpOptions = IMyOptions;
