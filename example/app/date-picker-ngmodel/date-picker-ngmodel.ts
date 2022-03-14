@@ -97,6 +97,7 @@ export class DatePickerNgmodel implements OnInit {
     'it-ch | Italian - Switzerland',
     'pl | Polish',
     'my | Burmese',
+    'mm | Malaysian',
     'sk | Slovak',
     'sl | Slovenian',
     'zh-cn | Chinese - China',

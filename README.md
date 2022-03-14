@@ -210,6 +210,7 @@ Currently supported languages are:
 | __it-ch__ | Italian - Switzerland |
 | __pl__ | Polish |
 | __my__ | Burmese |
+| __mm__ | Malaysian |
 | __sk__ | Slovak |
 | __sl__ | Slovenian |
 | __zh-cn__ | Chinese - China |
