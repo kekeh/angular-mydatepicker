@@ -182,6 +182,14 @@ export class LocaleService {
       sunHighlight: true,
       todayTxt: "ယနေ့"
     },
+    "mm": {
+      dayLabels: {su: "Ahd", mo: "Isn", tu: "Sel", we: "Rab", th: "Kha", fr: "Jum", sa: "Sab"},
+      monthLabels: {1: "Jan", 2: "Feb", 3: "Mac", 4: "Apr", 5: "Mei", 6: "Jun", 7: "Jul", 8: "Ogo", 9: "Sep", 10: "Okt", 11: "Nov", 12: "Dis"},
+      dateFormat: "dd-mm-yyyy",
+      firstDayOfWeek: "su",
+      sunHighlight: true,
+      todayTxt: "Hari ini"
+    },
     "sk": {
       dayLabels: { su: "Ne", mo: "Po", tu: "Ut", we: "St", th: "Št", fr: "Pi", sa: "So" },
       monthLabels: { 1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "Máj", 6: "Jún", 7: "Júl", 8: "Aug", 9: "Sep", 10: "Okt", 11: "Nov", 12: "Dec" },
