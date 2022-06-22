@@ -165,7 +165,6 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
       this.hostText = value;
     }
 
-    this.onTouchedCb();
   }
 
   private onClickWrapper = (event: any) => this.onClick(event);
@@ -532,6 +531,8 @@ export class AngularMyDatePickerDirective implements OnChanges, OnDestroy, Contr
 
       document.removeEventListener(CLICK, this.onClickWrapper);
     }
+
+    this.onTouchedCb();
   }
 
   private removeComponent(): void {
